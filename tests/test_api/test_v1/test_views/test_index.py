@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Unit test for the Flask application"""
+"""Unit test for the Index view"""
 from api.v1.app import app
 import json
 import MySQLdb
@@ -33,7 +33,7 @@ class TestAppIndex(unittest.TestCase):
         expected = {"status": "OK"}
         self.assertEqual(response_json, expected)
 
-    #! Response values need to be checked!
+    # !Response values need to be checked!
     def test_app_route_api_v1_stats(self):
         """
         Route '/api/v1/stats' should return a count of each model in storage.
