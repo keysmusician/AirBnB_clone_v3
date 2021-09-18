@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Creates index routes"""
 from flask.globals import request
-from sqlalchemy.sql.expression import update
 from api.v1.views import app_views
 from flask import abort, jsonify
 from models import storage
@@ -27,10 +26,10 @@ def get_states():
         return (jsonify(new_state.to_dict()), 201)
 
 
-@app_views.route('/states/<id>/', methods=['DELETE', 'GET', 'PUT'])
+@app_views.route('/states/<id>', methods=['DELETE', 'GET', 'PUT'])
 def get_state_from_id(id):
     """Returns a JSONified State specified by ID"""
-    state = storage.get(State, id)
+    state = storage.get("State", id)
     if state is None:
         abort(404)
 
