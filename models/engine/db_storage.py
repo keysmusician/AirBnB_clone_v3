@@ -18,7 +18,7 @@ classes = {"Amenity": Amenity, "City": City,
 
 
 class DBStorage:
-    """Interacts with the MySQL database"""
+    """Interface to the MySQL database"""
     __engine = None
     __session = None
 
@@ -38,7 +38,9 @@ class DBStorage:
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
-        """query on the current database session"""
+        """
+        Requests all models in the current database session specified by class
+        """
         new_dict = {}
         for clss in classes:
             if cls is None or cls is classes[clss] or cls is clss:
@@ -49,7 +51,7 @@ class DBStorage:
         return (new_dict)
 
     def new(self, obj):
-        """add the object to the current database session"""
+        """Add a model instance to the current database session"""
         self.__session.add(obj)
 
     def save(self):
@@ -57,7 +59,11 @@ class DBStorage:
         self.__session.commit()
 
     def delete(self, obj=None):
-        """delete from the current database session obj if not None"""
+        """
+        Deletes the specified object from the current database session.
+
+        Does nothing if `obj` is None.
+        """
         if obj is not None:
             self.__session.delete(obj)
 
@@ -72,7 +78,9 @@ class DBStorage:
         self.__session.remove()
 
     def get(self, cls, id):
-        """retrieves one object using class and id, none if not found"""
+        """
+        Returns one model instance specified by class and id, None if not found
+        """
         if cls and id:
             fetch = "{}.{}".format(cls, id)
             all_obj = self.all(cls)
