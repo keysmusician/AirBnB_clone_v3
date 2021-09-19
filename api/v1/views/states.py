@@ -43,11 +43,12 @@ def get_state_from_id(id):
         post = request.get_json()
         if post is None:
             return ('Not a JSON', 400)
-        # Remove these reserved keys
-        for key in ('id', 'created_at', 'updated_at'):
-            post.pop(key, None)
 
-        updated_State = State(state.to_dict().update(post))
-        updated_State.save()
+        # Update the State
+        for key, value in post.items():
+            # Ignore these reserved keys
+            if key in ('id', 'created_at', 'updated_at'):
+                continue
+            setattr(state, key, value)
 
-        return (jsonify(updated_State.to_dict()), 200)
+        return (jsonify(state.to_dict()), 200)
