@@ -7,7 +7,7 @@ from models import storage
 from models.state import State
 
 
-@app_views.route('/states/', methods=['GET', 'POST'])
+@app_views.route('/states', methods=['GET', 'POST'])
 def get_states():
     """Returns a JSON list of all states"""
     if request.method == 'GET':
@@ -43,7 +43,7 @@ def get_state_from_id(id):
         post = request.get_json()
         if post is None:
             return ('Not a JSON', 400)
-        # Ignore these reserved keys
+        # Remove these reserved keys
         for key in ('id', 'created_at', 'updated_at'):
             post.pop(key, None)
 
