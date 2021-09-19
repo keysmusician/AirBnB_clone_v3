@@ -12,6 +12,7 @@ import unittest
 
 class TestDBStorageDocs(unittest.TestCase):
     """Tests the documentation and style of DBStorage class"""
+
     @classmethod
     def setUpClass(cls):
         """Set up for the doc tests"""
