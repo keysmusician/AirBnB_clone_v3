@@ -1,14 +1,13 @@
 #!/usr/bin/python3
 """Creates index routes"""
 from flask.globals import request
-from werkzeug.exceptions import BadRequest
 from api.v1.views import app_views
 from flask import abort, jsonify
 from models import storage
 from models.state import State
 
 
-@app_views.route('/states/', methods=['GET', 'POST'])
+@app_views.route('/states', methods=['GET', 'POST'])
 def get_states():
     """Returns a JSON list of all states"""
     if request.method == 'GET':
