@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Unit test for the Index view"""
 from api.v1.app import app
-import json
 import MySQLdb
 import unittest
 
@@ -11,8 +10,8 @@ class TestAppIndex(unittest.TestCase):
 
     def setUp(self):
         """Set up testing environment."""
-        app.config['TESTING'] = True
-        self.app = app.test_client()
+        app.testing = True
+        self.test_client = app.test_client()
 
         # Set up the test database
         self.db = MySQLdb.connect(
@@ -25,24 +24,23 @@ class TestAppIndex(unittest.TestCase):
     def test_app_route_api_v1_status(self):
         """Route '/api/v1/status' should return {"status": "OK"}."""
         # Request the resource
-        response = self.app.get('/api/v1/status')
+        response = self.test_client.get('/api/v1/status')
 
         # Deserialize the response
-        response_json = json.loads(response.data.decode())
+        response_json = response.json
 
         expected = {"status": "OK"}
         self.assertEqual(response_json, expected)
 
-    # !Response values need to be checked!
     def test_app_route_api_v1_stats(self):
         """
-        Route '/api/v1/stats' should return a count of each model in storage.
+        Route '/api/v1/stats' should return counts of each model in storage.
         """
         # Request the resource
-        response = self.app.get('/api/v1/stats')
+        response = self.test_client.get('/api/v1/stats')
 
         # Deserialize the response
-        data = json.loads(response.data.decode())
+        data = response.json
 
         # All of and only these keys should exist in the response
         expected_keys = [
@@ -58,16 +56,13 @@ class TestAppIndex(unittest.TestCase):
         # Check the keys
         self.assertCountEqual(response_keys, expected_keys)
 
-        """
-        query_str = \"""
-        SELECT * from states,
-        \"""
+        # Confirm the counts
         cursor = self.db.cursor()
-        cursor.execute(query_str)
-        result = cursor.fetchall()
+        for table in expected_keys:
+            cursor.execute("SELECT COUNT(*) from {}".format(table))
+            result = cursor.fetchone()[0]
+            self.assertEqual(data.get(table), result)
         cursor.close()
-        print(result)
-        """
 
 if __name__ == '__main__':
     unittest.main()
