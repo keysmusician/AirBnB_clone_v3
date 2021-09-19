@@ -4,8 +4,8 @@ from api.v1.app import app
 import unittest
 
 
-class TestApp(unittest.TestCase):
-    """Tests the Flask application API routes"""
+class TestAppAPIv1(unittest.TestCase):
+    """Tests the Flask application API default routes"""
 
     def setUp(self):
         app.testing = True

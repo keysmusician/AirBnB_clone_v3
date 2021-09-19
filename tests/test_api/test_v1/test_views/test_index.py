@@ -5,7 +5,7 @@ import MySQLdb
 import unittest
 
 
-class TestAppIndex(unittest.TestCase):
+class TestAppAPIv1Index(unittest.TestCase):
     """Tests the Flask application API routes"""
 
     def setUp(self):
