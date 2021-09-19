@@ -42,7 +42,7 @@ class TestAppIndex(unittest.TestCase):
         response = self.app.get('/api/v1/stats')
 
         # Deserialize the response
-        response_json = json.loads(response.data.decode())
+        data = json.loads(response.data.decode())
 
         # All of and only these keys should exist in the response
         expected_keys = [
@@ -53,12 +53,10 @@ class TestAppIndex(unittest.TestCase):
             "states",
             "users"
         ]
-        response_keys = list(response_json.keys())
-        expected_keys.sort()
-        response_keys.sort()
+        response_keys = list(data.keys())
 
         # Check the keys
-        self.assertListEqual(response_keys, expected_keys)
+        self.assertCountEqual(response_keys, expected_keys)
 
         """
         query_str = \"""
