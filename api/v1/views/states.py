@@ -7,7 +7,7 @@ from models import storage
 from models.state import State
 
 
-@app_views.route('/states/', methods=['GET', 'POST'])
+@app_views.route('/states', methods=['GET', 'POST'])
 def get_states():
     """Returns a JSON list of all states"""
     if request.method == 'GET':
