@@ -4,7 +4,9 @@ from api.v1.views import app_views
 from flask import abort, jsonify
 from flask.globals import request
 from models import storage
+from models.city import City
 from models.place import Place
+from models.user import User
 
 
 @app_views.route(
@@ -12,7 +14,7 @@ from models.place import Place
 )
 def get_places_of_city_by_id(city_id):
     """Returns a JSON list of all HBnB places in a city."""
-    city = storage.get("City", city_id)
+    city = storage.get(City, city_id)
     if city is None:
         abort(404)
 
@@ -31,7 +33,7 @@ def get_places_of_city_by_id(city_id):
         user_id = post.get('user_id')
         if user_id is None:
             return ('Missing user_id', 400)
-        user = storage.get("User", user_id)
+        user = storage.get(User, user_id)
         if user is None:
             abort(404)
         new_place = Place(name=name, city_id=city.id, user_id=user_id)
@@ -46,7 +48,7 @@ def get_places_of_city_by_id(city_id):
 )
 def get_place_by_id(place_id):
     """Returns JSON serialization of a place specified by id"""
-    place = storage.get("Place", place_id)
+    place = storage.get(Place, place_id)
     if place is None:
         abort(404)
 

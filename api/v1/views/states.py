@@ -32,7 +32,7 @@ def get_states():
     '/states/<id>', methods=['DELETE', 'GET', 'PUT'], strict_slashes=False)
 def get_state_from_id(id):
     """Returns a JSONified State specified by ID"""
-    state = storage.get("State", id)
+    state = storage.get(State, id)
     if state is None:
         abort(404)
 

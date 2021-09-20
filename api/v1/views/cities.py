@@ -5,13 +5,14 @@ from flask import abort, jsonify
 from flask.globals import request
 from models import storage
 from models.city import City
+from models.state import State
 
 
 @app_views.route(
     '/states/<id>/cities',  methods=['GET', 'POST'], strict_slashes=False)
 def get_cities_of_state_by_id(id):
     """Returns a JSON list of all cities of a state."""
-    state = storage.get("State", id)
+    state = storage.get(State, id)
 
     if state is None:
         abort(404)
@@ -36,7 +37,7 @@ def get_cities_of_state_by_id(id):
     '/cities/<id>',  methods=['DELETE', 'GET', 'PUT'], strict_slashes=False)
 def get_city_by_id(id):
     """Returns JSON serialization of a city"""
-    city = storage.get("City", id)
+    city = storage.get(City, id)
 
     if city is None:
         abort(404)
