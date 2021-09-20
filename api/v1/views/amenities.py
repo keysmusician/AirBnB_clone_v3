@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Creates cities view routes"""
+"""Creates amenity view routes"""
 from api.v1.views import app_views
 from flask import abort, jsonify
 from flask.globals import request
