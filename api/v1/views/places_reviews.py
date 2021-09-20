@@ -8,6 +8,7 @@ from models.user import User
 from models.review import Review
 from models.place import Place
 
+
 @app_views.route(
     '/places/<place_id>/reviews',
     methods=['GET', 'POST'],
