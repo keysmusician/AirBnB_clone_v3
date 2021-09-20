@@ -20,6 +20,10 @@ def get_users():
             return ("Not a JSON", 400)
         if type(post) is not dict:
             return ("Missing name", 400)
+        if 'email' not in post:
+            return ("Missing email", 400)
+        if 'password' not in post:
+            return ("Missing password", 400)
         name = post.get('name')
         if name is None:
             return ('Missing name', 400)
@@ -32,7 +36,7 @@ def get_users():
                  strict_slashes=False)
 def get_user_from_id(user_id):
     """Returns a JSONified User specified by ID"""
-    user = storage.get("User", user_id)
+    user = storage.get(User, user_id)
     if user is None:
         abort(404)
 
@@ -50,7 +54,7 @@ def get_user_from_id(user_id):
         # Update the User
         for key, value in post.items():
             # Ignore these reserved keys
-            if key in ('id', 'created_at', 'updated_at'):
+            if key in ('id', 'email', 'created_at', 'updated_at'):
                 continue
             setattr(user, key, value)
         user.save()
