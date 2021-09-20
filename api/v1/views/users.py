@@ -28,11 +28,11 @@ def get_users():
         return (jsonify(new_user.to_dict()), 201)
 
 
-@app_views.route('/users/<id>', methods=['DELETE', 'GET', 'PUT'],
+@app_views.route('/users/<user_id>', methods=['DELETE', 'GET', 'PUT'],
                  strict_slashes=False)
-def get_user_from_id(id):
+def get_user_from_id(user_id):
     """Returns a JSONified User specified by ID"""
-    user = storage.get("User", id)
+    user = storage.get("User", user_id)
     if user is None:
         abort(404)
 
