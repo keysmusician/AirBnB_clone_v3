@@ -2,15 +2,14 @@
 """
 Contains the TestStateDocs classes
 """
-
-from datetime import datetime
 import inspect
 import models
 from models import state
+from models.state import State
 from models.base_model import BaseModel
+import MySQLdb
 import pep8
 import unittest
-State = state.State
 
 
 class TestStateDocs(unittest.TestCase):
@@ -59,6 +58,7 @@ class TestStateDocs(unittest.TestCase):
 
 class TestState(unittest.TestCase):
     """Test the State class"""
+
     def test_is_subclass(self):
         """Test that State is a subclass of BaseModel"""
         state = State()
@@ -103,3 +103,23 @@ class TestState(unittest.TestCase):
         state = State()
         string = "[State] ({}) {}".format(state.id, state.__dict__)
         self.assertEqual(string, str(state))
+
+    def test_save(self):
+        """Test that a new State enters the database"""
+        # Create new State
+        testonia = State(name='Testonia')
+        testonia.save()
+
+        # Confirm it is in the database
+        db = MySQLdb.connect(
+            user='hbnb_test', passwd='hbnb_test_pwd', db='hbnb_test_db'
+        )
+        db_cursor = db.cursor()
+        db_cursor.execute(
+            "SELECT id FROM states WHERE id='{}'".format(testonia.id)
+        )
+        record = db_cursor.fetchone()
+        db_cursor.close()
+        db.close()
+
+        self.assertEqual(record[0], testonia.id)

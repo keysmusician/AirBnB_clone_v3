@@ -121,8 +121,8 @@ Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://tw
 ### V2 Authors:
 Joann Vuong
 
-### V3 Authors;
-Justin Masayda [@keysmusician](https://github.com/keysmusician)
+### V3 Authors:
+Justin Masayda [@keysmusician](https://github.com/keysmusician)    
 Carson Stearn [@krytech](https://github.com/krytech)
 
 ## License

@@ -2,17 +2,14 @@
 """
 Contains the class DBStorage
 """
-
-import models
 from models.amenity import Amenity
-from models.base_model import BaseModel, Base
+from models.base_model import Base
 from models.city import City
 from models.place import Place
 from models.review import Review
 from models.state import State
 from models.user import User
 from os import getenv
-import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
@@ -21,7 +18,7 @@ classes = {"Amenity": Amenity, "City": City,
 
 
 class DBStorage:
-    """interaacts with the MySQL database"""
+    """Interface to the MySQL database"""
     __engine = None
     __session = None
 
@@ -41,7 +38,9 @@ class DBStorage:
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
-        """query on the current database session"""
+        """
+        Requests all models in the current database session specified by class
+        """
         new_dict = {}
         for clss in classes:
             if cls is None or cls is classes[clss] or cls is clss:
@@ -52,7 +51,7 @@ class DBStorage:
         return (new_dict)
 
     def new(self, obj):
-        """add the object to the current database session"""
+        """Add a model instance to the current database session"""
         self.__session.add(obj)
 
     def save(self):
@@ -60,7 +59,11 @@ class DBStorage:
         self.__session.commit()
 
     def delete(self, obj=None):
-        """delete from the current database session obj if not None"""
+        """
+        Deletes the specified object from the current database session.
+
+        Does nothing if `obj` is None.
+        """
         if obj is not None:
             self.__session.delete(obj)
 
@@ -68,8 +71,7 @@ class DBStorage:
         """reloads data from the database"""
         Base.metadata.create_all(self.__engine)
         sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
-        Session = scoped_session(sess_factory)
-        self.__session = Session
+        self.__session = scoped_session(sess_factory)
 
     def close(self):
         """call remove() method on the private session attribute"""
@@ -90,4 +92,3 @@ class DBStorage:
     def count(self, cls=None):
         """returns the number of objects in storage matching a given class"""
         return len(self.all(cls))
-

@@ -3,11 +3,11 @@
 from datetime import datetime
 import inspect
 import models
+from models.base_model import BaseModel
 import pep8 as pycodestyle
 import time
 import unittest
 from unittest import mock
-BaseModel = models.base_model.BaseModel
 module_doc = models.base_model.__doc__
 
 
@@ -58,6 +58,7 @@ class TestBaseModelDocs(unittest.TestCase):
 
 class TestBaseModel(unittest.TestCase):
     """Test the BaseModel class"""
+
     def test_instantiation(self):
         """Test that object is correctly created"""
         inst = BaseModel()
@@ -145,9 +146,10 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(string, str(inst))
 
     @mock.patch('models.storage')
-    def test_save(self, mock_storage):
-        """Test that save method updates `updated_at` and calls
-        `storage.save`"""
+    def test_save_attributes(self, mock_storage):
+        """
+        Test that save method updates `updated_at` and calls `storage.save`
+        """
         inst = BaseModel()
         old_created_at = inst.created_at
         old_updated_at = inst.updated_at
