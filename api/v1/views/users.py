@@ -24,10 +24,11 @@ def get_users():
             return ("Missing email", 400)
         if 'password' not in post:
             return ("Missing password", 400)
-        name = post.get('name')
-        if name is None:
+        if 'name' not in post:
             return ('Missing name', 400)
-        new_user = User(name=name)
+
+        new_user = User(
+            name=post['name'], email=post['email'], password=post['password'])
         new_user.save()
         return (jsonify(new_user.to_dict()), 201)
 
