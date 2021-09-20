@@ -8,6 +8,9 @@ from models.engine import db_storage
 from models.engine.db_storage import DBStorage
 import pep8
 import unittest
+from models import storage
+from models.state import State
+from models.city import City
 
 
 class TestDBStorageDocs(unittest.TestCase):
@@ -74,3 +77,24 @@ class TestFileStorage(unittest.TestCase):
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_save(self):
         """Test that save properly saves objects to file.json"""
+
+    def test_get(self):
+        """Tests get method from db storage"""
+        dic = {"name": "Amazingland"}
+        instance = State(**dic)
+        storage.new(instance)
+        storage.save()
+        get_instance = storage.get(State, instance.id)
+        self.assertEqual(get_instance, instance)
+
+    def test_count(self):
+        """Tests count method from db storage"""
+        dic = {"name": "Wonderland"}
+        state = State(**dic)
+        storage.new(state)
+        dic = {"name": "Fabulouscity", "state_id": state.id}
+        city = City(**dic)
+        storage.new(city)
+        storage.save()
+        count = storage.count()
+        self.assertEqual(len(storage.all()), count)
