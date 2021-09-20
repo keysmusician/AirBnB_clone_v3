@@ -8,8 +8,7 @@ from models.city import City
 
 
 @app_views.route(
-    '/states/<id>/cities',  methods=['GET', 'POST'], strict_slashes=False
-)
+    '/states/<id>/cities',  methods=['GET', 'POST'], strict_slashes=False)
 def get_cities_of_state_by_id(id):
     """Returns a JSON list of all cities of a state."""
     state = storage.get("State", id)
@@ -34,8 +33,7 @@ def get_cities_of_state_by_id(id):
 
 
 @app_views.route(
-    '/cities/<id>',  methods=['DELETE', 'GET', 'PUT'], strict_slashes=False
-)
+    '/cities/<id>',  methods=['DELETE', 'GET', 'PUT'], strict_slashes=False)
 def get_city_by_id(id):
     """Returns JSON serialization of a city"""
     city = storage.get("City", id)

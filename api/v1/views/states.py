@@ -29,8 +29,7 @@ def get_states():
 
 
 @app_views.route(
-    '/states/<id>', methods=['DELETE', 'GET', 'PUT'], strict_slashes=False
-)
+    '/states/<id>', methods=['DELETE', 'GET', 'PUT'], strict_slashes=False)
 def get_state_from_id(id):
     """Returns a JSONified State specified by ID"""
     state = storage.get("State", id)
