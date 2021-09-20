@@ -28,11 +28,11 @@ def get_amenities():
         return (jsonify(new_amenity.to_dict()), 201)
 
 
-@app_views.route('/amenities/<id>', methods=['DELETE', 'GET', 'PUT'],
+@app_views.route('/amenities/<amenity_id>', methods=['DELETE', 'GET', 'PUT'],
                  strict_slashes=False)
-def get_amenity_from_id(id):
+def get_amenity_from_amenity_id(amenity_id):
     """Returns a JSONified Amenity specified by ID"""
-    amenity = storage.get("Amenity", id)
+    amenity = storage.get("Amenity", amenity_id)
     if amenity is None:
         abort(404)
 
