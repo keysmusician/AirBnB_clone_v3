@@ -4,8 +4,9 @@ from api.v1.views import app_views
 from flask import abort, jsonify
 from flask.globals import request
 from models import storage
+from models.user import User
 from models.review import Review
-
+from models.place import Place
 
 @app_views.route(
     '/places/<place_id>/reviews',
@@ -17,7 +18,7 @@ def get_reviews_of_place_by_id(place_id):
     GET: Returns a JSON list of all reviews of places in a city
     POST: Creates and returns new Place
     """
-    place = storage.get("Place", place_id)
+    place = storage.get(Place, place_id)
     if place is None:
         abort(404)
 
@@ -36,7 +37,7 @@ def get_reviews_of_place_by_id(place_id):
         user_id = post.get('user_id')
         if user_id is None:
             return ('Missing user_id', 400)
-        user = storage.get("User", user_id)
+        user = storage.get(User, user_id)
         if user is None:
             abort(404)
         new_review = Review(name=text, state_id=place.id, user_id=user_id)
@@ -55,7 +56,7 @@ def get_review_by_id(review_id):
     GET: Returns a JSON serialization of a Review specified by review_id
     PUT: Updates and returns a Review specified by review_id
     """
-    review = storage.get("Review", review_id)
+    review = storage.get(Review, review_id)
     if review is None:
         abort(404)
 

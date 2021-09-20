@@ -32,7 +32,7 @@ def get_amenities():
                  strict_slashes=False)
 def get_amenity_from_id(amenity_id):
     """Returns a JSONified Amenity specified by ID"""
-    amenity = storage.get("Amenity", amenity_id)
+    amenity = storage.get(Amenity, amenity_id)
     if amenity is None:
         abort(404)
 
