@@ -49,7 +49,7 @@ def get_reviews_of_place_by_id(place_id):
     methods=['DELETE', 'GET', 'PUT'],
     strict_slashes=False
 )
-def get_place_by_id(review_id):
+def get_review_by_id(review_id):
     """
     DELETE: Deletes a Review specified by review_id
     GET: Returns a JSON serialization of a Review specified by review_id
