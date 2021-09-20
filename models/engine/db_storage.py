@@ -75,14 +75,19 @@ class DBStorage:
         """call remove() method on the private session attribute"""
         self.__session.remove()
 
-    def get(self, cls, id):
-        """retrieves one object using class and id, none if not found"""
-        if cls and id:
-            fetch = "{}.{}".format(cls, id)
-            all_obj = self.all(cls)
+    # Should this take a class name, or a class object? dont think it's necessary?
+    def get(self, cls_name, id):
+        """
+        Returns one model instance specified by class name and id, None if not
+        found
+        """
+        if cls_name and id:
+            fetch = "{}.{}".format(cls_name, id)
+            all_obj = self.all(cls_name)
             return all_obj.get(fetch)
         return None
 
     def count(self, cls=None):
         """returns the number of objects in storage matching a given class"""
-        return (len(self.all(cls)))
+        return len(self.all(cls))
+
