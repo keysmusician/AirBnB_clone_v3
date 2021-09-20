@@ -33,12 +33,7 @@ class User(BaseModel, Base):
                 User.__set_password(self, passwd)
         super().__init__(*args, **kwargs)
 
-    @property
-    def password(self):
-        """returns hashed password"""
-        return self._password
-
     @password.setter
-    def password(self, value):
+    def __set_password(self, value):
         """sets the password with hash"""
-        self._password = hashlib.md5(value.encode('utf8')).hexdigest()
+        self._password = hashlib.md5(value.encode("utf-8")).hexdigest()
