@@ -7,7 +7,6 @@ from models import storage
 from models.place import Place
 
 
-
 @app_views.route(
     '/cities/<city_id>/places',  methods=['GET', 'POST'], strict_slashes=False
 )
@@ -35,7 +34,7 @@ def get_places_of_city_by_id(city_id):
         user = storage.get("User", user_id)
         if user is None:
             abort(404)
-        new_place = Place(name=name, state_id=city.id, user_id=user_id)
+        new_place = Place(name=name, city_id=city.id, user_id=user_id)
         new_place.save()
         return (jsonify(new_place.to_dict()), 201)
 
