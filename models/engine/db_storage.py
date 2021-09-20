@@ -77,7 +77,6 @@ class DBStorage:
         """call remove() method on the private session attribute"""
         self.__session.remove()
 
-    # Should this take a class name, or a class object? dont think it's necessary?
     def get(self, cls_name, id):
         """
         Returns one model instance specified by class name and id, None if not
