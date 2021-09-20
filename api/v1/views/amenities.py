@@ -13,8 +13,7 @@ def get_amenities():
     """Returns a JSON list of all amenities"""
     if request.method == 'GET':
         return jsonify(
-            [Amenity.to_dict() for Amenity in storage.all(Amenity).values()]
-        )
+            [amenity.to_dict() for amenity in storage.all(Amenity).values()])
     if request.method == 'POST':
         post = request.get_json(silent=True)
         if post is None:
