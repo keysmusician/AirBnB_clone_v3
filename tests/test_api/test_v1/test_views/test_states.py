@@ -4,9 +4,11 @@ from models.state import State
 from api.v1.app import app
 import json
 import MySQLdb
+from test_env import test_environment_is_set
 import unittest
 
 
+@unittest.skipUnless(test_environment_is_set(), "Test environment is not set")
 class TestAppAPIv1States(unittest.TestCase):
     """Tests the Flask application /api/v1/states routes"""
 
@@ -22,6 +24,7 @@ class TestAppAPIv1States(unittest.TestCase):
         )
 
     def tearDown(self):
+        """Tear down"""
         self.db.close()
 
     def test_app_route_api_v1_states_GET(self):

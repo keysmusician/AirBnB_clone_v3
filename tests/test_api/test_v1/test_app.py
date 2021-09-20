@@ -8,6 +8,7 @@ class TestAppAPIv1(unittest.TestCase):
     """Tests the Flask application API default routes"""
 
     def setUp(self):
+        """Set up"""
         app.testing = True
         self.test_client = app.test_client()
 

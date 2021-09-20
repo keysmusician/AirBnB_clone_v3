@@ -1,12 +1,14 @@
 #!/usr/bin/python3
 """Unit test for the API cities view"""
+from api.v1.app import app
 from models.city import City
 from models.state import State
-from api.v1.app import app
 import MySQLdb
+from test_env import test_environment_is_set
 import unittest
 
 
+@unittest.skipUnless(test_environment_is_set(), "Test environment is not set")
 class TestAppAPIv1Cities(unittest.TestCase):
     """Tests the Flask application /api/v1/states routes"""
 
@@ -22,6 +24,7 @@ class TestAppAPIv1Cities(unittest.TestCase):
         )
 
     def tearDown(self):
+        """Teardown"""
         self.db.close()
 
     def test_states_ID_cities_GET(self):
@@ -64,7 +67,7 @@ class TestAppAPIv1Cities(unittest.TestCase):
 
     def test_cities_ID_GET(self):
         """
-        Requesting this route should return a the JSON for a the city with the
+        Requesting this route should return the JSON for the city with the
         specified ID
         """
         pass

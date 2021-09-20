@@ -2,9 +2,11 @@
 """Unit test for the API index view"""
 from api.v1.app import app
 import MySQLdb
+from test_env import test_environment_is_set
 import unittest
 
 
+@unittest.skipUnless(test_environment_is_set(), "Test environment is not set")
 class TestAppAPIv1Index(unittest.TestCase):
     """Tests the Flask application API routes"""
 
