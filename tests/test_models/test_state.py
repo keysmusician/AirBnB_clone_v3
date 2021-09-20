@@ -104,7 +104,8 @@ class TestState(unittest.TestCase):
         string = "[State] ({}) {}".format(state.id, state.__dict__)
         self.assertEqual(string, str(state))
 
-    def test_save(self):
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_save_DB(self):
         """Test that a new State enters the database"""
         # Create new State
         testonia = State(name='Testonia')

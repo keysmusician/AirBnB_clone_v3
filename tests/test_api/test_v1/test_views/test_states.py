@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Unit test for the States view"""
+"""Unit test for the API states view"""
 from models.state import State
 from api.v1.app import app
 import json

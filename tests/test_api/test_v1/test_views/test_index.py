@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Unit test for the Index view"""
+"""Unit test for the API index view"""
 from api.v1.app import app
 import MySQLdb
 import unittest
@@ -9,7 +9,7 @@ class TestAppAPIv1Index(unittest.TestCase):
     """Tests the Flask application API routes"""
 
     def setUp(self):
-        """Set up testing environment."""
+        """Set up testing environment"""
         app.testing = True
         self.test_client = app.test_client()
 
@@ -19,10 +19,11 @@ class TestAppAPIv1Index(unittest.TestCase):
         )
 
     def tearDown(self):
+        """Teardown routine"""
         self.db.close()
 
     def test_app_route_api_v1_status(self):
-        """Route '/api/v1/status' should return {"status": "OK"}."""
+        """Route '/api/v1/status' should return {"status": "OK"}"""
         # Request the resource
         response = self.test_client.get('/api/v1/status')
 
@@ -34,7 +35,7 @@ class TestAppAPIv1Index(unittest.TestCase):
 
     def test_app_route_api_v1_stats(self):
         """
-        Route '/api/v1/stats' should return counts of each model in storage.
+        Route '/api/v1/stats' should return counts of each model in storage
         """
         # Request the resource
         response = self.test_client.get('/api/v1/stats')
