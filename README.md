@@ -126,6 +126,7 @@ In the Database stage, we built a second storage engine---database storage. This
 * `HBNB_MYSQL_HOST`
 * `HBNB_MYSQL_DB`
 * `HBNB_TYPE_STORAGE`
+
 If `HBNB_TYPE_STORAGE` = `db`, The database storage engine will be use, which depends upon the values of the other environment variables to establish a connection to a database. Consequently, the specified database must exist *and* contain the expected tables. `setup_mysql_dev.sql` sets up a development environment database and user.
 
 Additionally, both storge engines' classes have the same methods implemented to provide seamless toggling between them. The SQLAlchemy ORM required significant additions to our models in order to properly link them to a database.
@@ -143,6 +144,7 @@ In this section of the project, we built a REST API. Our Flask blueprint and vie
 Note that for the purposes of this poject, we hosted locally with the built in development server that comes with Flask. The following environment variables determine the host and port the developent server will use:
 * `HBNB_API_HOST`
 * `HBNB_API_PORT`
+
 Unless specified, the host and port default to `0.0.0.0` and `5000` respectively.
 To try this API yourself, follow the [installation](#installation) steps, launch our API on the Flask development server, and go to `http://0.0.0.0:5000/api/v1/<endpoint>`. A successful request returns JSON.
 
