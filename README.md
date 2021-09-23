@@ -10,11 +10,28 @@
 </center>
 
 ## Table of Contents
+Table of Contents
+=================
+
 * [About](#about)
-    * [Technologies](#technologies)
+	* [Technologies](#technologies)
 * [The Console](#the-console)
+	* [HBnB CLI — The command interpreter](#hbnb-cli--the-command-interpreter)
+	* [Commands](#commands)
+	* [Usage](#usage)
+	* [Examples](#examples)
 * [Web Static](#web-static)
+* [Database](#database)
+* [Deploy Static](#deploy-static)
+* [Web Framework](#web-framework)
+* [REST API](#rest-api)
+	* [Usage](#usage-1)
+	* [Example](#example)
+	* [Endpoints](#endpoints)
+* [Web Dynamic](#web-dynamic)
+* [Bugs](#bugs)
 * [Authors](#authors)
+* [License](#license)
 
 ## About
 HBnB is a clone of the Air BnB website. The project is divided into 7 parts:
@@ -81,7 +98,7 @@ aba364fd-8b9e-4c4b-b865-8db6a6e9bc03
 
 (hbnb) all
 ["[Place] (aba364fd-8b9e-4c4b-b865-8db6a6e9bc03) {'created_at': datetime.datetime(2021, 7, 1, 13, 29, 27, 264673), 'id': 'aba364fd-8b9e-4c4b-b865-8db6a6e9bc03', 'updated_at': datetime.datetime(2021, 7, 1, 13, 29, 27, 264832)}"]
-(hbnb) 
+(hbnb)
 ```
 
 ## Web Static
@@ -102,29 +119,72 @@ Additionally, both storge engines' classes have the same methods implemented to 
 In this stage, we set up an Nginx web server and deployed our static files using Fabric---at least, that was the plan...
 
 ## Web Framework
-In the Web Framework stage we learned how to set up routes in Flask and create Jinja templates. That allowed us to create dynamic HTML, with data pulled from out database.
+In the Web Framework stage we learned how to set up routes in Flask and create Jinja templates. That allowed us to create dynamic HTML using data pulled from our MySQL database.
 
 ## REST API
-**COMING SOON**
+In this section of the project, we built a REST API. Our Flask blueprint and views for the API can be found in the `api` directory. Our API base URL is `<host>/api/v1/`.
+
+### Usage
+Note that for the purposes of this poject, we hosted locally with the built in development server that comes with Flask. To try this API yourself, you must clone this repo, install the dependencies (such as Flask, MySQL and SQLAlchemy, etc.), launch our API on the Flask development server, and go to `0.0.0.0:5000/api/v1/<endpoint>`. A successful request returns JSON.
+
+### Example
+Running the development server:
+```
+$ python3 -m api.v1.app
+ * Serving Flask app "app" (lazy loading)
+. . .
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+```
+Requesting an endpoint:
+```
+$ curl http://0.0.0.0:5000/api/v1/stats
+{
+  "amenities": 1,
+  "cities": 1,
+  "places": 1,
+  "reviews": 1,
+  "states": 1,
+  "users": 1
+}
+```
+
+
+### Endpoints
+The following are the endpoints we defined and their corresponding supported HTTP methods:
+|Endpoint|Methods|
+|--------|-------|
+|`/amenities/`| GET, POST |
+|`/amenities/<amenity_id>`| DELETE, GET, PUT |
+|`/cities/<city_id>`| DELETE, GET, PUT |
+|`/cities/<city_id>/places`|  GET, POST |
+|`/places/<place_id>`| DELETE, GET, PUT |
+|`/places/<place_id>/reviews`| GET, POST |
+|`/reviews/<review_id>`| DELETE, GET, PUT |
+|`/states/<state_id>/cities`|  GET, POST |
+|`/stats`| GET |
+|`/states/`| GET, POST |
+|`/states/<state_id>`| DELETE, GET, PUT |
+|`/status`| GET |
+|`/users/`| GET, POST |
+|`/users/<user_id>`| DELETE, GET, PUT |
 
 ## Web Dynamic
-**COMING COON**
+**COMING SOON**
 
 ## Bugs
-No known bugs. 
+No known bugs.
 
 ## Authors
 ### V1 authors:
-Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)  
+Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)
 Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)
 
 ### V2 Authors:
 Joann Vuong
 
 ### V3 Authors:
-Justin Masayda [@keysmusician](https://github.com/keysmusician)    
+Justin Masayda [@keysmusician](https://github.com/keysmusician)
 Carson Stearn [@krytech](https://github.com/krytech)
 
 ## License
 All rights reserved.
-
