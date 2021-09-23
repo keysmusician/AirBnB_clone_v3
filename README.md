@@ -10,9 +10,6 @@
 </center>
 
 ## Table of Contents
-Table of Contents
-=================
-
 * [About](#about)
 	* [Technologies](#technologies)
 * [Installation](#installation)
