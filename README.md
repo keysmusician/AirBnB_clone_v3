@@ -15,6 +15,7 @@ Table of Contents
 
 * [About](#about)
 	* [Technologies](#technologies)
+* [Installation](#installation)
 * [The Console](#the-console)
 	* [HBnB CLI — The command interpreter](#hbnb-cli--the-command-interpreter)
 	* [Commands](#commands)
@@ -51,6 +52,20 @@ This project was developed with the following tools:
   * **Web Framework**: Flask 1.0.4
 * **Linter**: PEP8 1.7.0
 * **Database**: MySQL 5.7
+
+## Installation
+To try any part of this project yourself, follow these instructions:
+1. Clone this repository: `git clone https://github.com/keysmusician/AirBnB_clone_v3.git`
+2. Install necessary dependencies:
+	* Python3
+	* Flask
+	* MySQL
+	* SQLAlchemy
+	* Fabric
+
+	*Note: Not all dependencies are needed for every section of this project.*
+
+3. Set up the development database: `cat ./setup_mysql_dev.sql | mysql -root -p`
 
 ## The Console
 The Console is the first stage of the HBnB clone. In it, we wrote classes for representing users and listings, a file storage engine for saving and recalling data between interactive sessions, as well as a command interpreter (the console), for easily managing our data. The console provides a backend interface to our storage engine(s).
@@ -125,7 +140,7 @@ In the Web Framework stage we learned how to set up routes in Flask and create J
 In this section of the project, we built a REST API. Our Flask blueprint and views for the API can be found in the `api` directory. Our API base URL is `<host>/api/v1/`.
 
 ### Usage
-Note that for the purposes of this poject, we hosted locally with the built in development server that comes with Flask. To try this API yourself, you must clone this repo, install the dependencies (such as Flask, MySQL and SQLAlchemy, etc.), launch our API on the Flask development server, and go to `0.0.0.0:5000/api/v1/<endpoint>`. A successful request returns JSON.
+Note that for the purposes of this poject, we hosted locally with the built in development server that comes with Flask. To try this API yourself, follow the [installation](#installation) steps, launch our API on the Flask development server, and go to `0.0.0.0:5000/api/v1/<endpoint>`. A successful request returns JSON.
 
 ### Example
 Running the development server:
@@ -177,6 +192,7 @@ No known bugs.
 ## Authors
 ### V1 authors:
 Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)
+
 Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)
 
 ### V2 Authors:
@@ -184,6 +200,7 @@ Joann Vuong
 
 ### V3 Authors:
 Justin Masayda [@keysmusician](https://github.com/keysmusician)
+
 Carson Stearn [@krytech](https://github.com/krytech)
 
 ## License
