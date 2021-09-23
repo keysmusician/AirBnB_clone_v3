@@ -69,7 +69,7 @@ The Console is the first stage of the HBnB clone. In it, we wrote classes for re
 
 ### HBnB CLI — The command interpreter
 The HBnB CLI (command line interpreter) provides a convenient command line interface specifically to manage (add, delete, modify, etc.) HBnB data.
-It offers an imporved workflow over alternatives such as embedding data in the source code, manually managing a data file, or using the Python interpreter to manage the data.
+It offers an improved workflow over alternatives such as embedding data in the source code, manually managing a data file, or using the Python interpreter to manage the data.
 
 ### Commands
 Bracketed arguments are optional.
@@ -86,13 +86,13 @@ Start an interactive HBnB CLI session by executing `console.py`:
 
 `./console.py`
 
-If it runs sucessfully, it will display the prompt and await input:
+If it runs successfully, it will display the prompt and await input:
 
 `(hbnb) `
 
 Simply type any valid command(s) listed above. Type `quit` to exit the interactive session.
 
-The HBnB CLI may also be used non-interacively by piping input to it from a shell:
+The HBnB CLI may also be used non-non-interactively by piping input to it from a shell:
 
 `$ echo "help" | ./console.py`
 
@@ -126,7 +126,7 @@ In the Database stage, we built a second storage engine---database storage. This
 
 If `HBNB_TYPE_STORAGE` = `db`, The database storage engine will be use, which depends upon the values of the other environment variables to establish a connection to a database. Consequently, the specified database must exist *and* contain the expected tables. `setup_mysql_dev.sql` sets up a development environment database and user.
 
-Additionally, both storge engines' classes have the same methods implemented to provide seamless toggling between them. The SQLAlchemy ORM required significant additions to our models in order to properly link them to a database.
+Additionally, both storage engines' classes have the same methods implemented to provide seamless toggling between them. The SQLAlchemy ORM required significant additions to our models in order to properly link them to a database.
 
 ## Deploy Static
 In this stage, we set up an Nginx web server and deployed our static files using Fabric---at least, that was the plan...
@@ -138,7 +138,7 @@ In the Web Framework stage we learned how to set up routes in Flask and create J
 In this section of the project, we built a REST API. Our Flask blueprint and views for the API can be found in the `api` directory. Our API base URL is `<host>/api/v1/`.
 
 ### Usage
-Note that for the purposes of this poject, we hosted locally with the built in development server that comes with Flask. The following environment variables determine the host and port the developent server will use:
+Note that for the purposes of this project, we hosted locally with the built in development server that comes with Flask. The following environment variables determine the host and port the development server will use:
 * `HBNB_API_HOST`
 * `HBNB_API_PORT`
 
