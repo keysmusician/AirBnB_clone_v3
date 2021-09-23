@@ -140,7 +140,11 @@ In the Web Framework stage we learned how to set up routes in Flask and create J
 In this section of the project, we built a REST API. Our Flask blueprint and views for the API can be found in the `api` directory. Our API base URL is `<host>/api/v1/`.
 
 ### Usage
-Note that for the purposes of this poject, we hosted locally with the built in development server that comes with Flask. To try this API yourself, follow the [installation](#installation) steps, launch our API on the Flask development server, and go to `0.0.0.0:5000/api/v1/<endpoint>`. A successful request returns JSON.
+Note that for the purposes of this poject, we hosted locally with the built in development server that comes with Flask. The following environment variables determine the host and port the developent server will use:
+* `HBNB_API_HOST`
+* `HBNB_API_PORT`
+Unless specified, the host and port default to `0.0.0.0` and `5000` respectively.
+To try this API yourself, follow the [installation](#installation) steps, launch our API on the Flask development server, and go to `http://0.0.0.0:5000/api/v1/<endpoint>`. A successful request returns JSON.
 
 ### Example
 Running the development server:
