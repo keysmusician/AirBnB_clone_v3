@@ -47,9 +47,9 @@ HBnB is a clone of the Air BnB website. The project is divided into 7 parts:
 This project was developed with the following tools:
 * **Environment**: Ubuntu 14.04 (Trusty)
 * **Codebase**: Python 3.4.3
-  * **ORM**: SQLAlchemy
-  * **Web Framework**: Flask
-* **Linter**: PEP8
+  * **ORM**: SQLAlchemy 1.2.5
+  * **Web Framework**: Flask 1.0.4
+* **Linter**: PEP8 1.7.0
 * **Database**: MySQL 5.7
 
 ## The Console
